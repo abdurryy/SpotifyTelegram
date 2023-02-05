@@ -1,0 +1,22 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="access_token">{{ access_token }}</p>
+    <p id="refresh_token">{{ refresh_token }}</p>
+</body>
+<script>
+
+    async function callback(){
+        let value = `; ${document.cookie}`;
+        const parts = value.split(`; telegram_id=`);
+        if (parts.length === 2){ value = parts.pop().split(';').shift()};
+        location.href = `/callback/telegram?id=${value}&access_token=${document.getElementById("access_token").innerHTML}&refresh_token=${document.getElementById("refresh_token").innerHTML}`;
+    }
+    callback()
+</script>
+</html>
